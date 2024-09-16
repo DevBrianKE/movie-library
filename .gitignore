@@ -8,6 +8,29 @@
 # testing
 /coverage
 
+# presentation
+Presentation/*.png
+
+# ignore specific files in Presentation folder
+Presentation/slide\ 1.png
+Presentation/slide\ 2.png
+Presentation/slide\ 3.png
+Presentation/slide\ 4.png
+Presentation/slide\ 5.png
+Presentation/slide\ 6.png
+Presentation/slide\ 7.png
+Presentation/slide\ 8.png
+
+# Ignore specific files with problematic suffixes
+Presentation/slide\ 1.png:Zone.Identifier
+Presentation/slide\ 2.png:Zone.Identifier
+Presentation/slide\ 3.png:Zone.Identifier
+Presentation/slide\ 4.png:Zone.Identifier
+Presentation/slide\ 5.png:Zone.Identifier
+Presentation/slide\ 6.png:Zone.Identifier
+Presentation/slide\ 7.png:Zone.Identifier
+Presentation/slide\ 8.png:Zone.Identifier
+
 # production
 /build
 
