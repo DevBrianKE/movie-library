@@ -1,7 +1,7 @@
 Certainly! Here's the `README.md` content in a format that you can directly copy and paste into your Markdown file:
 
 ```md
-# Movie Library Application
+## Movie Library Application
 
 This is a React-based web application designed to manage a movie library. Users can search for movies, add movies to a personal library, view detailed information about each movie, and remove movies from their library. The application allows users to toggle between light and dark themes and supports protected routes for certain features. The app interacts with a backend API to manage movie data.
 
