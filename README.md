@@ -1,135 +1,166 @@
+Certainly! Here's the `README.md` content in a format that you can directly copy and paste into your Markdown file:
 
-# React Single Page Application - Phase 2 Project
+```md
+# Movie Library Application
 
-## Overview
+This is a React-based web application designed to manage a movie library. Users can search for movies, add movies to a personal library, view detailed information about each movie, and remove movies from their library. The application allows users to toggle between light and dark themes and supports protected routes for certain features. The app interacts with a backend API to manage movie data.
 
-This project is a React-based single page application (SPA) that demonstrates the use of components, client-side routing, state management, and interactions with a RESTful backend API using `json-server`. 
+## Table of Contents
 
-## Learning Goals
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+- [Environment Variables](#environment-variables)
+- [Available Scripts](#available-scripts)
+- [Deployment](#deployment)
+- [Protected Routes and Authentication](#protected-routes-and-authentication)
+- [Contributing](#contributing)
+- [License](#license)
 
-- Build a React single page application from scratch. 
-- Utilize components, props, and state management.
-- Implement client-side routing using React Router.
-- Interact with a backend API (GET and POST requests) using `json-server`.
- 
-## Project Structure
+## Project Overview
 
-The project is organized into two repositories:
-1. **Frontend** - React app created using `create-react-app`.
-2. **Backend** - A simple RESTful API using `json-server`.
+The Movie Library Application is built using the React library. It allows users to perform the following actions:
+
+- Search for movies.
+- Add movies to a personal library.
+- Remove movies from the library.
+- View information about individual movies.
+- Switch between light and dark themes.
+- Navigate through multiple routes including movies, series, and episodes.
 
 ## Features
 
-- **Single Page Application (SPA)**: Uses React Router for navigating between three different routes.
-- **Component-Based Architecture**: The app is built using at least 5 reusable components to maintain clean and organized code.
-- **State Management**: Uses `useState` and `useEffect` to manage the state of the app.
-- **Form Handling**: A controlled form for submitting POST requests to the backend.
-- **API Integration**: The app interacts with a backend `json-server` API to handle data.
+1. **Movie Search**: Users can search for movies by title using an external API.
+2. **Movie Library**: Add and remove movies from the local library.
+3. **Movie Details**: View detailed information about each movie, including its poster, release date, and more.
+4. **Series and Episodes Management**: Manage both series and episodes.
+5. **Light/Dark Theme**: Toggle between light and dark mode themes.
+6. **Responsive Design**: Optimized for both desktop and mobile views.
 
-## Requirements
+## Technologies Used
 
-1. A React-based SPA with a single `index.html` file.
-2. The app should have at least 5 components.
-3. The app should have at least 3 client-side routes using React Router.
-4. The app should use a `json-server` backend with both a GET and POST request.
-5. State update after POST request (e.g., `setMovies([...movies, newMovie])`).
-6. Add CSS styling to the application, either using CSS files or a framework (React Bootstrap, Material UI, etc.).
+- **React**: Frontend library for building the user interface.
+- **React Router**: For routing and navigation between different views.
+- **Fetch API**: For making asynchronous requests to a public API.
+- **JSON Server**: For a simple mock backend to manage movie data.
+- **CSS**: For styling the application and theming.
+- **Local Storage**: To save user theme preferences.
 
-## Backend Setup
+## Getting Started
 
-1. Clone the backend repository from GitHub.
-2. Create a `db.json` file in the root directory with the following structure:
-    ```json
-    {
-      "movies": [
-        {
-          "id": 1,
-          "title": "Titanic",
-          "year": 1997,
-          "rating": 9.2
-        },
-        {
-          "id": 2,
-          "title": "Inception",
-          "year": 2010,
-          "rating": 8.8
-        }
-      ]
-    }
-    ```
-3. Install `json-server` if you haven't:
-    ```bash
-    npm install -g json-server
-    ```
-4. Start the `json-server`:
-    ```bash
-    json-server --watch db.json --port 3000
-    ```
+### Prerequisites
 
-## Frontend Setup
+- **Node.js** and **npm** (Node Package Manager) are required. You can download Node.js from [here](https://nodejs.org/).
+- Basic understanding of React and JavaScript is recommended.
 
-1. Clone the frontend repository from GitHub.
-2. Install dependencies:
-    ```bash
-    npm install
-    ```
-3. Create a `.env` file for API configuration:
-    ```bash
-    REACT_APP_API_URL=https://your-backend-url.onrender.com
-    ```
-4. Start the frontend server:
-    ```bash
-    npm start
-    ```
+### Installation
 
-## Deployment
+1. **Clone the repository**:
 
-### Backend Deployment
+   ```bash
+   git clone git@github.com:DevBrianKE/movie-library.git
+   ```
 
-1. Fork and clone the [json-server template](https://github.com/your-template-repo).
-2. Deploy the backend to Render:
-    - Follow instructions for deploying `json-server` on Render.
-    - Ensure the deployed backend URL is used in your frontend `.env` file.
+2. **Navigate to the project directory**:
 
-### Frontend Deployment
+   ```bash
+   cd movie-library-app
+   ```
 
-1. Build the React app for production:
-    ```bash
-    npm run build
-    ```
-2. Deploy the frontend to Netlify:
-    - Import your frontend GitHub repository to Netlify.
-    - Set up build commands:
-        - **Build command**: `npm run build`
-        - **Publish directory**: `build`
-3. Add environment variable `REACT_APP_API_URL` on Netlify.
+3. **Install dependencies**:
 
-### Redirects for React Router
+   ```bash
+   npm install
+   ```
 
-Add a `_redirects` file in the `public` directory of your React project:
-```
-/*    /index.html   200
-```
+### Running the Application
 
-## Stretch Goals
+To run the application locally, you need to ensure that you have set up your environment variables (see [Environment Variables](#environment-variables) section). Once done:
 
-- Incorporate an external API to fetch additional data.
-- Implement additional features such as search, filtering, or sorting.
+1. **Start the development server**:
+
+   ```bash
+   npm start
+   ```
+
+   This will launch the application in development mode. Open `http://localhost:3000` to view it in the browser.
+
+2. **Run the mock backend server (JSON Server)**:
+
+   ```bash
+   npx json-server --watch db.json --port 8000
+   ```
+
+   This will start a JSON server that acts as the backend for managing movie data. The application expects the backend to be running on `http://localhost:8000`.
 
 ## Environment Variables
 
-Use `.env` files to manage environment variables for different stages:
-- **.env.development**:
-    ```bash
-    REACT_APP_API_URL=http://localhost:3000
-    ```
-- **.env.production**:
-    ```bash
-    REACT_APP_API_URL=https://your-backend-url.onrender.com
-    ```
+The app relies on environment variables to fetch movie data from the backend. Create a `.env` file in the root directory and add the following variables:
 
-## Conclusion
+```bash
+REACT_APP_API_URL=http://localhost:8000
+```
 
-By completing this project, you'll have practiced building a full-stack React application that interacts with an API and uses modern front-end tools like React Router, state management, and client-side rendering. You can also deploy both the frontend and backend to platforms like Netlify and Render for others to see your work in action!
+- `REACT_APP_API_URL`: URL of the backend server. Defaults to `http://localhost:8000` if not provided.
 
-Feel free to expand this project by adding new features or improving the existing functionality.
+Make sure to restart the development server after making changes to the environment variables.
+
+## Available Scripts
+
+In the project directory, you can run the following scripts:
+
+### `npm start`
+
+Runs the app in the development mode. Open `http://localhost:3000` to view it in your browser. The page will reload if you make edits. You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified, and the filenames include hashes.
+
+### `npx json-server`
+
+Starts a mock backend using JSON Server. Ensure the server is running on `http://localhost:8000` for the app to work correctly.
+
+## Deployment
+
+To deploy this application, you can use services like [Render](https://render.com), [Netlify](https://www.netlify.com/), or [Vercel](https://vercel.com/). Below are the steps for deploying on [Render](https://render.com):
+##NB; this application has already been deployed  [https://movie-library-1-fve9.onrender.com/]
+
+1. **Create a new Web Service** on Render.
+2. **Connect the repository** by linking it to your GitHub account.
+3. **Set environment variables** (`REACT_APP_API_URL`) in the Render dashboard under the environment tab.
+4. **Deploy the application** and Render will build and host the project.
+
+Once deployed, you can access the application via the URL provided by Render.
+
+## Contributing
+The following contributed to the project ;
+stanleyndonj
+@DevBrianKE
+DevBrianKE DevBrianKE
+@annmutemi
+annmutemi
+@MungaiMunene
+MungaiMunene
+
+If you wish to contribute to this project:
+
+1. Fork the repository.
+2. Create a new feature branch.
+3. Commit your changes with clear and concise messages.
+4. Push your branch and open a pull request.
+
+We welcome all contributions, bug fixes, and feature improvements.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+```
