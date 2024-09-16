@@ -9,7 +9,7 @@
 /coverage
 
 # presentation
-/Presentation
+Presentation/*.png
 
 # production
 /build
