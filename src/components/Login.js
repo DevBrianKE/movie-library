@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './Auth.css'; // Import shared CSS for styling
+import './Auth.css'; 
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
@@ -15,11 +15,10 @@ function Login({ setIsAuthenticated }) {
     try {
       const response = await fetch(`${API_URL}/users?username=${username}`);
       const users = await response.json();
-      const user = users[0]; // Ensure there's a user in the array
-
+      const user = users[0]; 
       if (user && user.password === password) {
-        setIsAuthenticated(true); // Set the authentication state
-        navigate('/'); // Redirect to the homepage after login
+        setIsAuthenticated(true); 
+        navigate('/'); 
       } else {
         setError('Invalid username or password');
       }

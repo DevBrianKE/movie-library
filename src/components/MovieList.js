@@ -3,8 +3,8 @@ import './MovieList.css';
 import Slideshow from './Slideshow'; // Import Slideshow component
 
 const MovieList = ({ handleAddToLibrary, library, handleRemoveFromLibrary }) => {
-  const [movies, setMovies] = useState([]); // Combined OMDb and json-server movies
-  const [localMovies, setLocalMovies] = useState([]); // Store movies from json-server
+  const [movies, setMovies] = useState([]); 
+  const [localMovies, setLocalMovies] = useState([]); 
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage] = useState(8);
   const [error, setError] = useState('');
@@ -30,8 +30,8 @@ const MovieList = ({ handleAddToLibrary, library, handleRemoveFromLibrary }) => 
           const localResponse = await fetch(`${API_URL}/movies`);
           const localData = await localResponse.json();
 
-          setLocalMovies(localData); // Store locally fetched movies
-          setMovies([...omdbMovies, ...localData]); // Combine OMDb and local movies
+          setLocalMovies(localData); 
+          setMovies([...omdbMovies, ...localData]);
         } else {
           setError(data.Error);
         }
@@ -53,13 +53,13 @@ const MovieList = ({ handleAddToLibrary, library, handleRemoveFromLibrary }) => 
     }
 
     setLoading(true);
-    setError(''); // Clear previous errors before making a new search
+    setError(''); 
     try {
       const response = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&type=movie&apikey=${API_KEY}`);
       const data = await response.json();
       if (data.Response === 'True') {
-        setMovies([...data.Search, ...localMovies]); // Combine with locally added movies
-      } else {
+        setMovies([...data.Search, ...localMovies]); 
+            } else {
         setError(data.Error);
       }
     } catch (error) {
@@ -104,7 +104,7 @@ const MovieList = ({ handleAddToLibrary, library, handleRemoveFromLibrary }) => 
             {currentMovies.map((movie) => (
               <div
                 className="movie-tile"
-                key={movie.imdbID || movie.id} // Use imdbID for OMDb movies and id for local movies
+                key={movie.imdbID || movie.id} 
               >
                 <h3>{movie.Title || movie.title}</h3>
                 <p>{movie.Year || movie.releaseDate}</p>

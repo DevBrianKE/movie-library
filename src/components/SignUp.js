@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Auth.css'; // Import the shared CSS file for styling
+import './Auth.css'; 
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
