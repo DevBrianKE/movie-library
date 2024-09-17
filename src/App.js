@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MovieList from './components/MovieList';
 import AddMovieForm from './components/AddMovieForm';
-import MovieDetail from './components/MovieDetail';
+import Library from './components/Library';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 import NavBar from './components/NavBar';
 import NotFound from './components/NotFound';
-import Library from './components/Library';
-import './App.css'; // Ensure this file handles light/dark theme styles
-import SeriesList from './components/SeriesList';
-import EpisodesList from './components/EpisodesList';
+import './App.css';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [library, setLibrary] = useState([]);
   const [theme, setTheme] = useState('light');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Fetch the movie library from the backend on page load
+  // Check the value of isAuthenticated when logging in
+  useEffect(() => {
+    console.log('Authentication Status:', isAuthenticated);
+  }, [isAuthenticated]);
+
+  // Fetch the movie library from the backend (json-server) on page load
   useEffect(() => {
     const fetchLibrary = async () => {
       try {
@@ -31,7 +36,7 @@ function App() {
     fetchLibrary();
   }, []);
 
-  // Add movie to library (json-server)
+  // Add movie to the library (json-server)
   const handleAddToLibrary = async (movie) => {
     try {
       const response = await fetch(`${API_URL}/movies`, {
@@ -67,7 +72,7 @@ function App() {
 
       if (response.ok) {
         setLibrary((prevLibrary) =>
-          prevLibrary.filter((movie) => movie.imdbID !== movieId && movie.id !== movieId) // Handle both imdbID and local id
+          prevLibrary.filter((movie) => movie.imdbID !== movieId && movie.id !== movieId)
         );
       } else {
         console.error('Failed to remove movie from library');
@@ -82,10 +87,9 @@ function App() {
   };
 
   const fetchMoviesBySearch = () => {
-    // Implement search functionality here or pass it down from MovieList if already implemented there.
+    // Implement search functionality here
   };
 
-  // Update body class when theme changes
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
@@ -100,47 +104,49 @@ function App() {
           fetchMoviesBySearch={fetchMoviesBySearch}
         />
         <Routes>
+          {/* Protected Routes */}
           <Route
             path="/"
             element={
-              <MovieList
-                handleAddToLibrary={handleAddToLibrary}
-                library={library}
-                handleRemoveFromLibrary={handleRemoveFromLibrary}
-              />
+              isAuthenticated ? (
+                <>
+                  <h2>Welcome to the Movie Library!</h2>
+                  <MovieList
+                    handleAddToLibrary={handleAddToLibrary}
+                    library={library}
+                    handleRemoveFromLibrary={handleRemoveFromLibrary}
+                  />
+                </>
+              ) : (
+                <Navigate to="/login" />
+              )
             }
           />
-          <Route path="/add-movie" element={<AddMovieForm />} />
+          <Route
+            path="/add-movie"
+            element={isAuthenticated ? <AddMovieForm /> : <Navigate to="/login" />}
+          />
           <Route
             path="/library"
             element={
-              <Library
-                library={library}
-                handleRemoveFromLibrary={handleRemoveFromLibrary}
-              />
+              isAuthenticated ? (
+                <Library
+                  library={library}
+                  handleRemoveFromLibrary={handleRemoveFromLibrary}
+                />
+              ) : (
+                <Navigate to="/login" />
+              )
             }
           />
+          {/* Authentication Routes */}
           <Route
-            path="/series"
-            element={
-              <SeriesList
-                handleAddToLibrary={handleAddToLibrary}
-                library={library}
-                handleRemoveFromLibrary={handleRemoveFromLibrary}
-              />
-            }
+            path="/login"
+            element={<Login setIsAuthenticated={setIsAuthenticated} />}
           />
-          <Route
-            path="/episodes"
-            element={
-              <EpisodesList
-                handleAddToLibrary={handleAddToLibrary}
-                library={library}
-                handleRemoveFromLibrary={handleRemoveFromLibrary}
-              />
-            }
-          />
-          <Route path="/movies/:id" element={<MovieDetail />} />
+          <Route path="/signup" element={<SignUp />} />
+
+          {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
