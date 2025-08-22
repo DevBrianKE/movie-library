@@ -1,10 +1,16 @@
-# 🎬 Movie Library Application
+# Movie Library Application
 
 A React-based web application for managing a personal movie library. Users can search for movies, add them to a library, view details, and remove them. The app supports light/dark themes, protected routes, and interacts with a backend API to manage data.
 
 ---
 
-## 📑 Table of Contents
+## Live Demo  
+
+[Movie Library App](https://movie-library-1-fve9.onrender.com/)  
+
+---
+
+## Table of Contents
 
 - [Project Overview](#project-overview)
 - [Features](#features)
@@ -21,19 +27,19 @@ A React-based web application for managing a personal movie library. Users can s
 
 ---
 
-## 📖 Project Overview
+## Project Overview
 
 The **Movie Library Application** is built with **React**. It enables users to:
 
-- 🔍 Search for movies by title.  
-- ➕ Add/remove movies in a personal library.  
-- 📄 View detailed information about each movie.  
-- 🎨 Switch between light and dark themes.  
-- 📺 Navigate across multiple routes (movies, series, episodes).  
+- Search for movies by title.  
+- Add/remove movies in a personal library.  
+- View detailed information about each movie.  
+- Switch between light and dark themes.  
+- Navigate across multiple routes (movies, series, episodes).  
 
 ---
 
-## 🚀 Features
+## Features
 
 1. **Movie Search** – Fetch movies from an external API by title.  
 2. **Personal Library** – Add/remove movies locally.  
@@ -45,7 +51,7 @@ The **Movie Library Application** is built with **React**. It enables users to:
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **React** – UI framework.  
 - **React Router** – Navigation between routes.  
@@ -53,7 +59,3 @@ The **Movie Library Application** is built with **React**. It enables users to:
 - **JSON Server** – Mock backend for movie data.  
 - **CSS** – Styling + theming.  
 - **Local Storage** – Theme preference persistence.  
-
----
-
-
